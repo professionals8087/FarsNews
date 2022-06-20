@@ -28,6 +28,10 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/user/{id}', [UsersController::class, "user"]);
 
-Route::get('/category', [CategoriesController::class, "Category"]);
+Route::get('/list', [CategoriesController::class, "ListCategories"])->name('list');
+Route::get('/show/{id}', [CategoriesController::class, "ShowCategories"]);
+Route::get('/delete/{id}', [CategoriesController::class, "DeleteCategories"]);
+Route::post('/store', [CategoriesController::class, "StoreCategories"])->name("store");
+Route::get('/update/{id}', [CategoriesController::class, "UpdateCategories"]);
+Route::post('/edit/{id}', [CategoriesController::class, "EditCategories"])->name('edit');
