@@ -19,7 +19,10 @@
             <input type="text" class="form-control" placeholder="نام دسته بندی را وارد کنید" name="name">
             <button type="submit" class="btn btn-primary">ثبت</button>
         </form>
-        <br><br>
+        <br>
+        @foreach ($errors->all() as $error)
+            <div class="alert alert-danger">{{ $error }}</div>
+        @endforeach
         <table class="table table-striped table-dark">
             <tr>
                 <td>کد</td>

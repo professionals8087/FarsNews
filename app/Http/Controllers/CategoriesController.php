@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CategoriesRequest;
 use App\Models\categories;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -32,25 +33,27 @@ class CategoriesController extends Controller
         $stmt->update();
     }
 
-    public function StoreCategories(Request $request)
+    public function StoreCategories(CategoriesRequest $request)
     {
         $categories = new categories();
         $categories->name = $request->name;
-        if($categories->save()) {
+        if ($categories->save()) {
             return redirect()->route('list');
         }
         return;
     }
 
-    public function UpdateCategories($id) {
+    public function UpdateCategories($id)
+    {
         return view('update', ["id" => $id]);
     }
 
-    public function EditCategories(Request $request,$id) {
-        $stmt = categories::query()->where('id',$id)->first();
-        if($stmt) {
+    public function EditCategories(Request $request, $id)
+    {
+        $stmt = categories::query()->where('id', $id)->first();
+        if ($stmt) {
             $stmt->name = $request->name;
-            if($stmt->save()) {
+            if ($stmt->save()) {
                 return redirect()->route('list');
             }
         }
